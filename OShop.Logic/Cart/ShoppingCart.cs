@@ -28,6 +28,7 @@ namespace OShop.Logic.Cart
 
         }
 
+
         public void RemoveFromCart(Product product)
         {
             cartItems.RemoveAll(p => p.ProductId == product.ProductId);
@@ -46,7 +47,12 @@ namespace OShop.Logic.Cart
 
         public IEnumerable<CartItem> GetCartItems
         {
-            get { return cartItems;  }
+            get {  return cartItems; }
+        }
+
+        public bool IsEmpty
+        {
+            get { return (cartItems.Count == 0); }
         }
     }
 }

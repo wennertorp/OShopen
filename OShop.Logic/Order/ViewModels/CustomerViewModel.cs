@@ -1,18 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
-using OShop.Logic.Order.ViewModels;
 
-namespace OShop.Logic.Order
+namespace OShop.Logic.Order.ViewModels
 {
-    
-    public class Customer
+    public class CustomerViewModel
     {
-        [ScaffoldColumn(false)]
-        [DisplayName("Ordernr")]
-        public int CustomerId { get; set; }
-
         [Required(ErrorMessage = "Förnamn är obligatorisk.")]
         [DisplayName("Förnamn")]
         [StringLength(80)]
@@ -37,34 +33,33 @@ namespace OShop.Logic.Order
         [DisplayName("Postort")]
         [StringLength(40)]
         public string City { get; set; }
-                   
-        
+
+
         [Required(ErrorMessage = "E-post är obligatorisk.")]
         [DisplayName("E-post")]
         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",
             ErrorMessage = "Email is is not valid.")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        
-        [ScaffoldColumn(false)]
-        [DisplayName("Ordervärde")]
-        public int OrderTotal { get; set; }
 
+        public string ReturnUrl { get; set; }
 
-        public int OrderStatus { get; set; }
-        
+        public int CustomerId { get; set; }
 
-        public CustomerViewModel ToCustomerViewModel(CustomerViewModel model)
+        public Customer ToCustomer()
         {
-            model.FirstName = FirstName;
-            model.LastName = LastName;
-            model.Address = Address;
-            model.PostalCode = PostalCode;
-            model.Email = Email;
-            model.City = City;
-            model.CustomerId = CustomerId;
-
-            return model;
+            Customer customer = new Customer()
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                Address = Address,
+                PostalCode = PostalCode,
+                Email = Email,
+                City = City,
+                CustomerId = CustomerId,
+                OrderStatus = 0
+            };
+            return customer;
         }
     }
 }
