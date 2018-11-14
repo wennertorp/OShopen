@@ -8,7 +8,12 @@ namespace OShop.Data
 {
     public class ProductsRepository : IProductRepository
     {
-        private ApplicationDbContext context = new ApplicationDbContext();
+        private ApplicationDbContext context;
+
+        public ProductsRepository(ApplicationDbContext applicationDbContext)
+        {
+            context = applicationDbContext;
+        }
 
         public IEnumerable<Product> Products {
             get {

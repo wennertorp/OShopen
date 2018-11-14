@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using OShop.Data.Abstract;
 using OShop.Logic.Order;
 
@@ -7,7 +8,12 @@ namespace OShop.Data
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private ApplicationDbContext context = new ApplicationDbContext();
+        private ApplicationDbContext context;
+
+        public CustomerRepository(ApplicationDbContext applicationDbContext)
+        {
+            context = applicationDbContext;
+        }
 
         public bool Add(Customer customer)
         {
@@ -29,6 +35,14 @@ namespace OShop.Data
                 return customers;
 
             }
+        }
+
+        public void Update(Customer customer)
+        {
+            context.Customers.Attach(customer);
+            var entry = context.Entry(customer);
+            entry.State = EntityState.Modified;
+            context.SaveChanges();
         }
     }
 }

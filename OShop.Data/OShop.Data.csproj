@@ -109,9 +109,11 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ICartRepository.cs" />
     <Compile Include="Abstract\ICategoryRepository.cs" />
     <Compile Include="Abstract\ICustomerRepository.cs" />
     <Compile Include="Abstract\IProductRepository.cs" />
+    <Compile Include="Cart\CartRepository.cs" />
     <Compile Include="Cart\CustomerRepository.cs" />
     <Compile Include="Context\Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

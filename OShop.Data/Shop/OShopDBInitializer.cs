@@ -3,7 +3,7 @@ using OShop.Logic.Shop;
 
 namespace OShop.Data
 {
-    public class OShopDBInitializer : System.Data.Entity.DropCreateDatabaseAlways<ApplicationDbContext>
+    public class OShopDBInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {

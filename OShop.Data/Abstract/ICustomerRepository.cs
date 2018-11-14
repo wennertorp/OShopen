@@ -7,5 +7,6 @@ namespace OShop.Data.Abstract
     {
         bool Add(Customer customer);
         IEnumerable<Customer> Customers { get; }
+        void Update(Customer customer);
     }
 }

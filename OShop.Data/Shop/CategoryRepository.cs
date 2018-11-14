@@ -10,7 +10,13 @@ namespace OShop.Data
 {
     public class CategoryRepository : ICategoryRepository
     {
-        private ApplicationDbContext context = new ApplicationDbContext();
+
+        private ApplicationDbContext context;
+
+        public CategoryRepository(ApplicationDbContext applicationDbContext)
+        {
+            context = applicationDbContext;
+        }
 
         public IEnumerable<Category> Categories
         {
