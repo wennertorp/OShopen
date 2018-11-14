@@ -20,4 +20,52 @@ textarea {
     max-width: 280px;
 }
 
+.borderless td, .borderless th {
+    border: none;
+}
 
+.order-header-row {
+    cursor: pointer;
+}
+
+.order-rejected {
+    color: #808080;
+}
+
+.order-body-row {
+    display: none;
+}
+
+.cart-summary {
+    background-color: #d8d8d8;
+    margin-top: 0.2em;
+    padding: 0.2em 1em;
+    border-radius: 3px;
+}
+
+    .cart-summary > div {
+        border-bottom: 1px solid #d8d8d8;
+    }
+
+        .cart-summary > div > span {
+            font-size: 1.2em;
+            margin-right: 0.5em
+        }
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-left: 150px;
+}
+
+nav li a {
+    float: left;
+    color: #ffffff;
+    width: 110px;
+}
+
+.navbar img {
+    max-height: 80px;
+    margin-top: 10px;
+}

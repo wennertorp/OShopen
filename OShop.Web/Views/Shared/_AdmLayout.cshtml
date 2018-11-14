@@ -8,6 +8,17 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <img src="~/Content/Images/logo.png" />
+            <nav>
+                <ul>
+                    <li><a href="~/Adm">Artiklar</a></li>
+                    <li><a href="~/Adm/Orders">Orders</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
     <div class="container">
         @RenderBody()
     </div>

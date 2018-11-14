@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Data.Entity;
 using Ninject;
+using Ninject.Web.Common;
 using OShop.Data.Abstract;
 using OShop.Data;
+using OShop.Order.Abstract;
+using OShop.Order.Processors;
+using OShop.Order.PSP;
 
 namespace OShop.Web.Infastructure
 {
@@ -22,6 +27,12 @@ namespace OShop.Web.Infastructure
             kernel.Bind<IProductRepository>().To<ProductsRepository>();
             kernel.Bind<ICustomerRepository>().To<CustomerRepository>();
             kernel.Bind<ICategoryRepository>().To<CategoryRepository>();
+            kernel.Bind<ICartRepository>().To<CartRepository>();
+            kernel.Bind<IOrderProcessor>().To<OrderProcessor>();
+            kernel.Bind<IPSP>().To<DummyPSP>();
+            //kernel.Bind<DbContext>().To<ApplicationDbContext>().InRequestScope();
+            kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
+
         }
     }
 }

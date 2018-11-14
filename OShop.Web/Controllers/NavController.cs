@@ -15,10 +15,11 @@ namespace OShop.Web.Controllers
             repository = repo;
         }
 
+        // Returns a PartialView with a list of all categories [string] with at least one product.
         public PartialViewResult Menu(string category = null)
         {
             ViewBag.SelectedCategory = category;
-
+           
             IEnumerable<string> categories = repository.Products
                 .Select(x => x.Category.Name)
                 .Distinct()

@@ -16,34 +16,19 @@ namespace OShopen.Controllers
         }
 
         
-
         // GET: Store
         public ActionResult Index(string Category)
         {
-
-            //
             IEnumerable<Product> products = repository.Products
                     .Where(p => p.Category.Name == Category || Category == null);
-                //CurrentCategory = Category
-            //};
+            
+            List<ProductDisplayViewModel> productsDisplay = new List<ProductDisplayViewModel>();
 
-            //if (products != null)
-            //{
-                List<ProductDisplayViewModel> productsDisplay = new List<ProductDisplayViewModel>();
-                foreach (var x in products)
-                {
-                    var productDisplay = new ProductDisplayViewModel()
-                    {
-                        ProductId = x.ProductId,
-                        Name = x.Name,
-                        ImageName = x.ImageName,
-                        Price = x.Price,
-                        CategoryName = x.Category.Name
-                    };
-                    productsDisplay.Add(productDisplay);
-                }
-            //return productsDisplay;
-            //}
+            foreach (var product in products)
+            {
+                var productDisplay = product.ToProductDisplayViewModel();
+                productsDisplay.Add(productDisplay);
+            }
 
             ProductsListViewModel model = new ProductsListViewModel
             {
@@ -51,11 +36,8 @@ namespace OShopen.Controllers
                 CurrentCategory = Category
             };
             return View(model);
- 
-
-            
+             
         }
-
-        
+       
     }
 }

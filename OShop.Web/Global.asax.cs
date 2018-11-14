@@ -3,6 +3,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Data.Entity;
 using OShop.Data;
+using OShop.Logic.Cart;
+using OShop.Web.Infastructure.Binders;
 
 namespace OShopen
 {
@@ -15,6 +17,7 @@ namespace OShopen
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(ShoppingCart), new ShoppingCartModelBinder());
         }
     }
 }

@@ -17,6 +17,7 @@ namespace OShop.Web.App_Start
 
         public static void Start()
         {
+
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
@@ -36,10 +37,11 @@ namespace OShop.Web.App_Start
             RegisterServices(kernel);
             return kernel;
         }
+
         private static void RegisterServices(IKernel kernel)
         {
             System.Web.Mvc.DependencyResolver.SetResolver(new OShop.Web.Infastructure.NinjectDependencyResolver(kernel));
-            //kernel.Bind<IRepo>().ToMethod(ctx => new Repo("Ninject Rocks!"));
+
         }
     }
 }

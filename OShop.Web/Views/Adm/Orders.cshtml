@@ -1,0 +1,58 @@
+﻿@model IEnumerable<OShop.Logic.Order.ViewModels.OrderSummaryViewModel>
+@using OShop.Web.HtmlHelpers;
+
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_AdmLayout.cshtml";
+}
+
+<h2>Orders</h2>
+
+
+<table class="table table-striped borderless">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Customer.CustomerId)</th>
+        <th>Namn</th>
+        <th>&nbsp;</th>
+        <th>@Html.DisplayNameFor(model => model.Customer.OrderTotal)</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr class="@Html.FormatFromOrderStatus(item.Customer.OrderStatus) ">
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CustomerId)
+            </td>
+            <td class="order-header-row">
+                @Html.DisplayFor(modelItem => item.Customer.LastName), @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                <div class="order-body-row">
+                    <table class="table borderless">
+                        @foreach (var p in item.OrderedItems)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => p.Qty)</td>
+                                <td>@Html.DisplayFor(modelItem => p.Product.Name)</td>
+                                <td>@Html.FormatAmount(p.Product.Price)</td>
+                                <td>@Html.FormatAmount(p.Product.Price * p.Qty)</td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </td>
+            <td>
+                <img src="@Html.OrderStatusImageCreator(item.Customer.OrderStatus)" />
+            </td>
+            <td>
+                @Html.FormatAmount(item.Customer.OrderTotal)
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+@section Scripts {
+    <script src="~/Scripts/common.js"></script>
+    }

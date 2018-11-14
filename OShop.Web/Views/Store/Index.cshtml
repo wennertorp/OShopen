@@ -5,8 +5,14 @@
     ViewBag.Title = Model.CurrentCategory;
 }
 
-<h2>Produkter</h2>
-
+@if (Model.CurrentCategory != null)
+{
+    <h1>@Html.DisplayFor(model => model.CurrentCategory)</h1>
+}
+else
+{
+    <h1>Alla produkter</h1>
+}
 
 <div>
     

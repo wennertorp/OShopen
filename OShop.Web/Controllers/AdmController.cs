@@ -3,6 +3,10 @@ using System.Linq;
 using System.Collections.Generic;
 using OShop.Data.Abstract;
 using OShop.Logic.Shop;
+using OShop.Logic.Shop.ViewModels;
+using OShop.Logic.Order;
+using OShop.Logic.Order.ViewModels;
+
 
 namespace OShop.Web.Controllers
 {
@@ -10,11 +14,15 @@ namespace OShop.Web.Controllers
     {
         private readonly IProductRepository productRepository;
         private readonly ICategoryRepository categoryRepository;
+        private readonly ICustomerRepository customerRepository;
+        private readonly ICartRepository cartRepository;
 
-        public AdmController(IProductRepository repository, ICategoryRepository catRepository)
+        public AdmController(IProductRepository repository, ICategoryRepository catRepository, ICustomerRepository custRepository, ICartRepository cartRepo)
         {
             productRepository = repository;
             categoryRepository = catRepository;
+            customerRepository = custRepository;
+            cartRepository = cartRepo;
         }
 
         
@@ -25,7 +33,7 @@ namespace OShop.Web.Controllers
 
         
 
-        // GET: Adm/Edit
+        // GET: Adm/Edit/5
         public ActionResult Edit(int id)
         {
             Product product = productRepository.Products
@@ -40,8 +48,6 @@ namespace OShop.Web.Controllers
         }
 
         // POST: Adm/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProductId,CategoryId,Name,Price,ImageName")] Product product)
@@ -80,5 +86,29 @@ namespace OShop.Web.Controllers
             ViewBag.CategoryId = new SelectList(categories, "CategoryId", "Name", product.CategoryId);
             return View(product);
         }
+
+        // GET: Adm/Orders
+        public ActionResult Orders()
+        {
+            List<Category> categories = categoryRepository.Categories.ToList(); 
+            IEnumerable<Customer> customers = customerRepository.Customers;
+            List<OrderSummaryViewModel> orderSummaries = new List<OrderSummaryViewModel>();
+            
+            foreach(Customer customer in customers)
+            {
+                IEnumerable<OrderedItem> products = cartRepository.Items.Where(p => p.CustomerId == customer.CustomerId).ToList();
+
+                OrderSummaryViewModel model = new OrderSummaryViewModel()
+                {
+                    Customer = customer,
+                    OrderedItems = products
+                };
+                orderSummaries.Add(model);
+            }
+
+            return View(orderSummaries);
+        }
     }
+
+
 }

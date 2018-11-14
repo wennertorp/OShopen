@@ -1,39 +1,33 @@
 ﻿@model OShop.Logic.Cart.ShoppingCartViewModel
+@using OShop.Web.HtmlHelpers
+
+@{
+    ViewBag.Title = "Din kundvagn";
+    Layout = "~/Views/Shared/_LayoutWithoutCartSummary.cshtml";
+}
 
 <h1>Din kundvagn</h1>
 
-<table class="table table-condensed table-striped">
-    <tr>
-        <th>Antal</th>
-        <th>Artikel</th>
-        <th>à</th>
-        <th>summa</th>
+@if (Model.Cart.IsEmpty)
+{
+    <p>Din kundvagn är tom.</p>
 
-    </tr>
-    @foreach (var item in Model.CartItems)
-    {
-        <tr>
-            <td>@item.Qty</td>
-            <td>@item.Product.Name</td>
-            <td class="text-right">@item.Product.Price kr</td>
-            <td class="text-right">@(item.Qty * @item.Product.Price) kr</td>
-        </tr>
-    }
-
-    <tr>
-        <td colspan="3" class="text-right">Totalt:</td>
-        <td class="text-right">
-            @Model.Cart.GetCartTotal().ToString() kr
-        </td>
-    </tr>
-</table>
-
-<div class="text-center">
-    <a class="btn btn-primary" href="~/Store">Fortsätt handla</a>
-    @Html.ActionLink("Till kassan", "Checkout", null, new { @class = "btn btn-primary"})
-</div>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Fortsätt handla</a>
+}
+else
+{
 
 
+    @Html.Action("LargeCartSummary", "ShoppingCart")
+
+
+
+    <div class="text-center">
+        <a class="btn btn-primary" href="@Model.ReturnUrl">Fortsätt handla</a>
+        @Html.ActionLink("Till kassan", "Checkout", null, new { @class = "btn btn-primary" })
+    </div>
+
+}
 
 
 

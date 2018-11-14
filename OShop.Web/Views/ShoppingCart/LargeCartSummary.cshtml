@@ -1,0 +1,28 @@
+﻿@model OShop.Logic.Cart.ShoppingCart
+@using OShop.Web.HtmlHelpers
+
+<table class="table table-condensed table-striped">
+    <tr>
+        <th>Antal</th>
+        <th>Artikel</th>
+        <th>à</th>
+        <th>summa</th>
+
+    </tr>
+    @foreach (var item in Model.GetCartItems)
+    {
+        <tr>
+            <td>@item.Qty</td>
+            <td>@item.Product.Name</td>
+            <td class="text-right">@Html.FormatAmount(@item.Product.Price)  </td>
+            <td class="text-right">@Html.FormatAmount(@item.Qty * @item.Product.Price)  </td>
+        </tr>
+    }
+
+    <tr>
+        <td colspan="3" class="text-right">Totalt:</td>
+        <td class="text-right">
+            @Html.FormatAmount(@Model.GetCartTotal())
+        </td>
+    </tr>
+</table>

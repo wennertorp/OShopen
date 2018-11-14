@@ -1,0 +1,40 @@
+﻿@model OShop.Logic.Order.ViewModels.PaymentViewModel
+@using OShop.Web.HtmlHelpers
+
+@{
+    ViewBag.Title = "Välj betalmetod";
+    Layout = "~/Views/Shared/_LayoutWithoutCartSummary.cshtml";
+}
+
+<h2>Kundvagn</h2>
+
+@Html.Action("LargeCartSummary", "ShoppingCart")
+
+<h2>Adress</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Namn:</th>
+        <td>@Html.DisplayFor(m => m.Customer.FirstName) @Html.DisplayFor(m => m.Customer.LastName)</td>
+    </tr>
+    <tr>
+        <th>Adress:</th>
+        <td>
+            @Html.DisplayFor(m => m.Customer.Address) <br />
+            @Html.DisplayFor(m => m.Customer.PostalCode) @Html.DisplayFor(m => m.Customer.City)
+        </td>
+    </tr>
+    <tr>
+        <th>E-post:</th>
+        <td>@Html.DisplayFor(m => m.Customer.Email) </td>
+    </tr>
+
+</table>
+
+
+<h2>Välj betalningsmetod</h2>
+
+
+
+@Html.ActionLink("Testköp, " + Html.FormatAmount(@Model.Cart.GetCartTotal()), "OrderSubmitted", null, new { @class = "btn btn-primary btn-large" })

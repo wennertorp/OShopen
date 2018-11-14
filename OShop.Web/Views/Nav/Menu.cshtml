@@ -5,14 +5,14 @@
         @class = "btn btn-block btn-default btn-lg"
     })
 
-@foreach (var cat in Model)
+@foreach (var category in Model)
 {
-    @Html.RouteLink(cat, new
+    @Html.RouteLink(category, new
     {
         controller = "Store",
         action = "Index",
-        Category = cat
+        Category = category
     }, new {
-        @class = "btn btn-block btn-default btn-lg" + (cat == ViewBag.SelectedCategory ? " btn-primary" : "")
+        @class = "btn btn-block btn-default btn-lg" + (category == ViewBag.SelectedCategory ? " btn-primary" : "")
     })
 }

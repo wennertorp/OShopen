@@ -1,16 +1,23 @@
-﻿@model OShop.Logic.Order.Customer
+﻿@model OShop.Logic.Order.ViewModels.CustomerViewModel
 
 @{
     ViewBag.Title = "Kassa";
+    Layout = "~/Views/Shared/_LayoutWithoutCartSummary.cshtml";
 }
 
-<h2>Kassa</h2>
+
+<h2>Kundvagn</h2>
+
+@Html.Action("LargeCartSummary", "ShoppingCart")
+
+<h2>Adress</h2>
 <p>Vänligen fyll i din adress.</p>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
 
     <div class="form-horizontal">
 
@@ -67,12 +74,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
+                @Html.HiddenFor(model => model.ReturnUrl)
+                @Html.HiddenFor(model => model.CustomerId)
                 <input type="submit" value="Fortsätt" class="btn btn-info" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Tillbaka", "Index")
-</div>
+
+

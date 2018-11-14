@@ -1,18 +1,19 @@
 ﻿@model OShop.Logic.Shop.ViewModels.ProductDisplayViewModel
+@using OShop.Web.HtmlHelpers;
 
 <div class="col-sm-4">
     <div class="product-container">
-        
+
         <h5>@Html.DisplayFor(modelItem => Model.CategoryName)</h5>
         <img src="~/Content/Images/Products/@(Model.ImageName)" style="max-width: 200px;">
         <h3>@Html.DisplayFor(modelItem => Model.Name)</h3>
-        <p>@Html.DisplayFor(modelItem => Model.Price) kr</p>
+        <p>@Html.FormatAmount(Model.Price)</p>
         @using (Html.BeginForm("AddToCart", "ShoppingCart", FormMethod.Post,
             new { @class = "form-inline" }))
         {
             @Html.HiddenFor(x => x.ProductId)
             @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-            
+
             <div class="form-group row">
                 <select class="form-control" name="qty">
                     <option>1</option>

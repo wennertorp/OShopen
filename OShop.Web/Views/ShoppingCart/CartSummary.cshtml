@@ -1,9 +1,12 @@
 ﻿@model OShop.Logic.Cart.ShoppingCart
+@using OShop.Web.HtmlHelpers
 
-<div class="navbar-right" style="color: #d8d8d8;">
-    Din kundvagn innehåller: <br />
-    @Model.GetCartItems.Sum(x => x.Qty) vara/varor <br />
-    @Model.GetCartTotal().ToString() kr
+@if (!Model.IsEmpty) { 
+    <div class="navbar-right cart-summary">
+
+        <div><span class="glyphicon glyphicon-shopping-cart"></span> Din kundvagn</div>
+        @Html.FormatAmount(@Model.GetCartTotal())  @Html.FormatCartItems(@Model.GetCartItems.Sum(x => x.Qty))  <br />
+        <a href=@Url.Action("Index", "ShoppingCart", new { returnUrl = Request.Url.PathAndQuery })> Till kundvagnen </a>
 </div>
-
+}
 
