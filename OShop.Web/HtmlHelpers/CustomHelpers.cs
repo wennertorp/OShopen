@@ -7,7 +7,7 @@ namespace OShop.Web.HtmlHelpers
 {
     public static class CustomHelpers
     {
-
+        // Formats amount with group separator and adds kr.
         public static string FormatAmount(this HtmlHelper html, int amount)
         {
             if(amount == 0)
@@ -24,6 +24,7 @@ namespace OShop.Web.HtmlHelpers
 
         }
 
+        // 
         public static string FormatCartItems(this HtmlHelper html, int items)
         {
             if (items == 1)
@@ -37,6 +38,8 @@ namespace OShop.Web.HtmlHelpers
             else return "";
         }
 
+
+        // Returns classname depending on orderStatus
         public static string FormatFromOrderStatus (this HtmlHelper html, int orderStatus)
         {
             string className;
@@ -57,6 +60,7 @@ namespace OShop.Web.HtmlHelpers
             return className;
         }
 
+        // Returns imagenames according to orderstatus
         public static string OrderStatusImageCreator(this HtmlHelper html, int orderStatus)
         {
             string imageName = "/Content/Images/os" + orderStatus + ".png";
