@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OShop.Logic", "OShop.Logic\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OShop.Logic.Tests", "OShop.Logic.Tests\OShop.Logic.Tests.csproj", "{AC0194E4-4CC3-49DC-9DAC-5789513CB31F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OShop.Order", "OShop.Order\OShop.Order.csproj", "{A6AB779C-CDF1-477D-A9A3-FEC9A9513BDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OShop.Order.Tests", "OShop.Order.Tests\OShop.Order.Tests.csproj", "{D5E6520B-D68D-4855-922B-D97E63448A3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{AC0194E4-4CC3-49DC-9DAC-5789513CB31F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC0194E4-4CC3-49DC-9DAC-5789513CB31F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC0194E4-4CC3-49DC-9DAC-5789513CB31F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6AB779C-CDF1-477D-A9A3-FEC9A9513BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6AB779C-CDF1-477D-A9A3-FEC9A9513BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6AB779C-CDF1-477D-A9A3-FEC9A9513BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6AB779C-CDF1-477D-A9A3-FEC9A9513BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5E6520B-D68D-4855-922B-D97E63448A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E6520B-D68D-4855-922B-D97E63448A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E6520B-D68D-4855-922B-D97E63448A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E6520B-D68D-4855-922B-D97E63448A3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
